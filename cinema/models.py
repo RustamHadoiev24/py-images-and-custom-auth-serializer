@@ -9,7 +9,9 @@ from django.utils.text import slugify
 def movie_image_file_path(instance, filename):
     _, extension = os.path.splitext(filename)
     movie_slug = slugify(instance.title)
-    return os.path.join("uploads", "movies", f"{movie_slug}-{uuid.uuid4()}{extension}")
+    return os.path.join(
+        "uploads", "movies", f"{movie_slug}-{uuid.uuid4()}{extension}"
+    )
 
 
 class CinemaHall(models.Model):
@@ -50,7 +52,10 @@ class Movie(models.Model):
     duration = models.IntegerField()
     genres = models.ManyToManyField(Genre)
     actors = models.ManyToManyField(Actor)
-    image = models.ImageField(null=True, upload_to=movie_image_file_path, blank=True)
+    image = models.ImageField(null=True,
+                              upload_to=movie_image_file_path,
+                              blank=True
+                              )
 
     class Meta:
         ordering = ["title"]
