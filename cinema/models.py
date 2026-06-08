@@ -10,7 +10,11 @@ def movie_image_file_path(instance: Any, filename: str) -> str:
     _, extension = os.path.splitext(filename)
     movie_slug = slugify(instance.title)
     filename = f"{movie_slug}-{uuid.uuid4()}{extension}"
-    return os.path.join("uploads", "movies", filename)
+    return os.path.join(
+        "uploads",
+        "movies",
+        filename
+    )
 
 
 class Genre(models.Model):
