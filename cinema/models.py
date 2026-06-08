@@ -58,7 +58,9 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre, related_name="movies")
     actors = models.ManyToManyField(Actor, related_name="movies")
     image = models.ImageField(
-        null=True, upload_to=movie_image_file_path, blank=True
+        null=True,
+        upload_to=movie_image_file_path,
+        blank=True
     )
 
     class Meta:
@@ -70,10 +72,14 @@ class Movie(models.Model):
 
 class MovieSession(models.Model):
     movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, related_name="movie_sessions"
+        Movie,
+        on_delete=models.CASCADE,
+        related_name="movie_sessions"
     )
     cinema_hall = models.ForeignKey(
-        CinemaHall, on_delete=models.CASCADE, related_name="movie_sessions"
+        CinemaHall,
+        on_delete=models.CASCADE,
+        related_name="movie_sessions"
     )
     show_time = models.DateTimeField()
 
@@ -87,7 +93,9 @@ class MovieSession(models.Model):
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
-        "user.User", on_delete=models.CASCADE, related_name="orders"
+        "user.User",
+        on_delete=models.CASCADE,
+        related_name="orders"
     )
 
     class Meta:
@@ -99,10 +107,14 @@ class Order(models.Model):
 
 class Ticket(models.Model):
     movie_session = models.ForeignKey(
-        MovieSession, on_delete=models.CASCADE, related_name="tickets"
+        MovieSession,
+        on_delete=models.CASCADE,
+        related_name="tickets"
     )
     order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="tickets"
+        Order,
+        on_delete=models.CASCADE,
+        related_name="tickets"
     )
     row = models.IntegerField()
     seat = models.IntegerField()
