@@ -124,4 +124,5 @@ class Ticket(models.Model):
         ordering = ["row", "seat"]
 
     def __str__(self) -> str:
-        return f"{str(self.movie_session)} (row: {self.row}, seat: {self.seat})"
+        return (f"{str(self.movie_session)} "
+                f"(row: {self.row}, seat: {self.seat})")
